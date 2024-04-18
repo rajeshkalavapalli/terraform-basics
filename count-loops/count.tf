@@ -1,8 +1,9 @@
 resource "aws_instance" "web" {
-  count = 3
+  count = length(var.instance_name)
   ami           = var.ami-id
-  instance_type = var.instance_name == "web" ? "t3.small" : "t2.small"
- # vpc_security_group_ids = [aws_security_group.roboshop.id]
+  instance_type = var.instance_name[count.index] == "mongodb" || var.instance_name[count.index] == "mysql" ? "t3.small" : "t2.small"
 
-  tags = var.tags
+  tags = {
+    Name = var.instance_name[count.index]
+  }
 }
