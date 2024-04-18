@@ -26,3 +26,10 @@ variable "instance_name" {
     ]
 }
 
+variable "hostedzone" {
+  type = string
+  default = "Z07107583SIBMEYCNYDA6"
+}
+
+
+ 
